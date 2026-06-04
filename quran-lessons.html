@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ustadh Abiyad — Quran Lessons</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --emerald: #1a6b4a;
+  --emerald-dark: #0f4530;
+  --emerald-light: #e8f5ee;
+  --emerald-mid: #2d8c62;
+  --gold: #c8973a;
+  --gold-light: #fdf6e8;
+  --cream: #faf8f3;
+  --ink: #1c1c1a;
+  --muted: #6b6860;
+  --border: #e0ddd5;
+  --white: #ffffff;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(15,69,48,0.10);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── GEOMETRIC PATTERN UTILITY ── */
+.pattern-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a6b4a' fill-opacity='0.06'%3E%3Cpath d='M30 0l8.66 15H21.34L30 0zm0 60l-8.66-15h17.32L30 60zM0 30l15-8.66V38.66L0 30zm60 0L45 38.66V21.34L60 30zM30 22.5l7.5 13h-15l7.5-13zm0 15l-7.5 13h15l-7.5-13zM22.5 30l13-7.5v15l-13-7.5zm15 0l13 7.5H22.5L37.5 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250,248,243,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.nav-brand {
+  font-family: 'Amiri', serif;
+  font-size: 20px;
+  color: var(--emerald-dark);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-brand .crescent { font-size: 22px; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  text-decoration: none; font-size: 14px; font-weight: 500;
+  color: var(--muted); transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--emerald); }
+.btn-book-nav {
+  background: var(--emerald);
+  color: white; border: none; border-radius: 8px;
+  padding: 8px 20px; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+  transition: background 0.2s;
+}
+.btn-book-nav:hover { background: var(--emerald-dark); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 88vh;
+  background: linear-gradient(160deg, var(--emerald-dark) 0%, var(--emerald) 60%, var(--emerald-mid) 100%);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 80px 40px;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M40 0l11.55 20H28.45L40 0zm0 80l-11.55-20h23.1L40 80zM0 40l20-11.55V51.55L0 40zm80 0L60 51.55V28.45L80 40zM40 30l10 17.32H30L40 30zm0 20l-10 17.32h20L40 50zM30 40l17.32-10v20L30 40zm20 0l17.32 10H32.68L50 40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  position: relative; z-index: 1;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 22px;
+}
+.hero-ayah {
+  font-family: 'Amiri', serif;
+  font-size: 26px; line-height: 1.8;
+  color: rgba(255,255,255,0.95);
+  direction: rtl; text-align: right;
+  margin-bottom: 14px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+}
+.hero-ayah-trans {
+  font-size: 13px; font-style: italic;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 32px;
+}
+.hero-title {
+  font-family: 'Amiri', serif;
+  font-size: 52px; line-height: 1.1;
+  color: white; letter-spacing: -1px;
+  margin-bottom: 18px;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-sub {
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 36px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s 0.2s ease both; }
+.btn-primary {
+  background: var(--gold); color: var(--ink);
+  border: none; border-radius: 10px;
+  padding: 13px 28px; font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+  transition: all 0.2s; box-shadow: 0 4px 16px rgba(200,151,58,0.4);
+}
+.btn-primary:hover { background: #b8852e; transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: white;
+  border: 1.5px solid rgba(255,255,255,0.45); border-radius: 10px;
+  padding: 13px 28px; font-size: 15px; font-weight: 500;
+  cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.2s;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+/* teacher card in hero */
+.hero-card {
+  background: white; border-radius: 20px;
+  padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.teacher-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--emerald), var(--emerald-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Amiri', serif; font-size: 32px; color: white;
+  margin-bottom: 16px;
+}
+.teacher-name { font-family: 'Amiri', serif; font-size: 22px; color: var(--ink); margin-bottom: 2px; }
+.teacher-title { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.teacher-stats {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px;
+}
+.tstat { text-align: center; }
+.tstat-val { font-size: 20px; font-weight: 700; color: var(--emerald); display: block; }
+.tstat-lbl { font-size: 11px; color: var(--muted); }
+.availability-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 10px; }
+.slots-preview { display: flex; flex-wrap: wrap; gap: 7px; }
+.slot-chip {
+  background: var(--emerald-light); color: var(--emerald);
+  font-size: 12px; font-weight: 600; padding: 5px 11px;
+  border-radius: 20px; border: 1px solid rgba(26,107,74,0.2);
+}
+
+/* ── SECTIONS ── */
+section { padding: 80px 40px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--emerald); background: var(--emerald-light);
+  padding: 4px 14px; border-radius: 20px; margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Amiri', serif; font-size: 38px;
+  color: var(--ink); margin-bottom: 14px; letter-spacing: -0.5px;
+}
+.section-sub { font-size: 15px; color: var(--muted); max-width: 520px; }
+
+/* ── SUBJECTS ── */
+.subjects-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px;
+}
+.subject-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px 24px;
+  transition: all 0.25s; cursor: default;
+  position: relative; overflow: hidden;
+}
+.subject-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--emerald); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.subject-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); border-color: transparent; }
+.subject-card:hover::before { transform: scaleX(1); }
+.subject-icon { font-size: 30px; margin-bottom: 14px; }
+.subject-name { font-family: 'Amiri', serif; font-size: 20px; color: var(--ink); margin-bottom: 6px; }
+.subject-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.subject-meta { font-size: 12px; font-weight: 600; color: var(--emerald); }
+
+/* ── HOW IT WORKS ── */
+#how { background: var(--emerald-dark); }
+#how .section-title { color: white; }
+#how .section-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+#how .section-sub { color: rgba(255,255,255,0.6); }
+.steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 48px; }
+.step { text-align: center; }
+.step-num {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(200,151,58,0.15); border: 1px solid rgba(200,151,58,0.3);
+  color: var(--gold); font-size: 18px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.step-title { font-size: 15px; font-weight: 600; color: white; margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+/* ── BOOKING FORM ── */
+#book { background: white; }
+.booking-wrap {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start;
+  margin-top: 48px;
+}
+.booking-info h3 { font-family: 'Amiri', serif; font-size: 22px; margin-bottom: 16px; }
+.info-item { display: flex; gap: 12px; margin-bottom: 18px; align-items: flex-start; }
+.info-icon {
+  width: 36px; height: 36px; min-width: 36px; border-radius: 8px;
+  background: var(--emerald-light); display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.info-text strong { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.info-text span { font-size: 13px; color: var(--muted); }
+
+.form-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 18px; padding: 36px;
+}
+.form-title { font-family: 'Amiri', serif; font-size: 24px; margin-bottom: 8px; }
+.form-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-full { margin-bottom: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+input, select, textarea {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 9px; font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+  background: white; color: var(--ink);
+  transition: border 0.15s; outline: none; width: 100%;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--emerald); }
+textarea { resize: vertical; min-height: 80px; }
+
+/* day picker */
+.day-picker { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; margin-bottom: 16px; }
+.day-btn {
+  aspect-ratio: 1; border-radius: 8px;
+  border: 1.5px solid var(--border); background: white;
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all 0.15s; font-family: 'Nunito', sans-serif;
+}
+.day-btn:hover { border-color: var(--emerald); color: var(--emerald); }
+.day-btn.selected { background: var(--emerald); border-color: var(--emerald); color: white; }
+
+/* time slots */
+.time-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 20px; }
+.time-btn {
+  padding: 8px 4px; border-radius: 8px; font-size: 12px; font-weight: 600;
+  border: 1.5px solid var(--border); background: white; color: var(--muted);
+  cursor: pointer; transition: all 0.15s; font-family: 'Nunito', sans-serif;
+}
+.time-btn:hover { border-color: var(--emerald); color: var(--emerald); }
+.time-btn.selected { background: var(--emerald); border-color: var(--emerald); color: white; }
+.time-btn.taken { background: #f5f5f3; color: #ccc; cursor: not-allowed; border-color: #eee; }
+
+.btn-submit {
+  width: 100%; background: var(--emerald); color: white;
+  border: none; border-radius: 10px;
+  padding: 14px; font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+  transition: all 0.2s; margin-top: 4px;
+}
+.btn-submit:hover { background: var(--emerald-dark); transform: translateY(-1px); }
+
+/* ── SUCCESS MESSAGE ── */
+.success-msg {
+  display: none; text-align: center; padding: 32px 20px;
+}
+.success-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--emerald-light); color: var(--emerald);
+  font-size: 28px; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.success-msg h3 { font-family: 'Amiri', serif; font-size: 24px; margin-bottom: 8px; }
+.success-msg p { font-size: 14px; color: var(--muted); }
+
+/* ── TESTIMONIALS ── */
+.testimonials { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 44px; }
+.testimonial {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
+}
+.stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+.testimonial-text { font-size: 14px; color: var(--ink); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+.testimonial-author { font-size: 13px; font-weight: 600; color: var(--emerald); }
+.testimonial-from { font-size: 12px; color: var(--muted); }
+
+/* ── FAQ ── */
+.faq-list { margin-top: 36px; max-width: 700px; }
+.faq-item {
+  border-bottom: 1px solid var(--border); padding: 18px 0; cursor: pointer;
+}
+.faq-q {
+  font-size: 15px; font-weight: 600; color: var(--ink);
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.faq-toggle {
+  width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
+  background: var(--emerald-light); color: var(--emerald);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 300; transition: transform 0.2s;
+}
+.faq-a {
+  font-size: 14px; color: var(--muted); line-height: 1.7;
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-top: 10px; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--emerald-dark);
+  padding: 48px 40px;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+}
+.footer-brand {
+  font-family: 'Amiri', serif; font-size: 26px; color: white; margin-bottom: 8px;
+}
+.footer-tagline { font-size: 13px; margin-bottom: 24px; }
+.footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 24px; }
+.footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
+.footer-copy { font-size: 12px; }
+
+/* ── ADMIN PANEL ── */
+.admin-toggle-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 99;
+  background: var(--gold); color: var(--ink);
+  border: none; border-radius: 50px; padding: 11px 20px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 4px 16px rgba(200,151,58,0.4);
+  transition: all 0.2s;
+}
+.admin-toggle-btn:hover { transform: translateY(-2px); }
+
+.admin-panel {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(15,69,48,0.6); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.admin-panel.open { display: flex; }
+.admin-box {
+  background: white; border-radius: 18px; width: 100%; max-width: 720px;
+  max-height: 90vh; overflow-y: auto;
+  animation: fadeUp 0.2s ease;
+}
+.admin-header {
+  padding: 24px 28px 20px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; background: white; z-index: 1;
+}
+.admin-title { font-family: 'Amiri', serif; font-size: 22px; }
+.close-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); }
+.admin-body { padding: 24px 28px; }
+.booking-entry {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+}
+.booking-entry-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.booking-entry-name { font-weight: 700; font-size: 15px; }
+.booking-status {
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 20px; letter-spacing: 0.04em;
+}
+.status-new { background: #fff8e6; color: #8a6a00; }
+.status-confirmed { background: var(--emerald-light); color: var(--emerald); }
+.booking-meta { font-size: 13px; color: var(--muted); }
+.booking-actions { display: flex; gap: 8px; margin-top: 10px; }
+.action-btn {
+  font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 7px;
+  cursor: pointer; font-family: 'Nunito', sans-serif; border: none; transition: all 0.15s;
+}
+.confirm-btn { background: var(--emerald-light); color: var(--emerald); }
+.confirm-btn:hover { background: var(--emerald); color: white; }
+.delete-btn { background: #fde8e8; color: #b03030; }
+.delete-btn:hover { background: #b03030; color: white; }
+.empty-bookings { text-align: center; padding: 40px; color: var(--muted); font-size: 14px; }
+
+@media(max-width:900px){
+  .hero-inner,.booking-wrap{ grid-template-columns:1fr; }
+  .hero-card{ display:none; }
+  .subjects-grid,.steps{ grid-template-columns:1fr 1fr; }
+  .testimonials{ grid-template-columns:1fr; }
+  nav .nav-links { display:none; }
+  section { padding: 60px 20px; }
+  nav { padding: 0 20px; }
+  .hero { padding: 60px 20px; }
+}
+@media(max-width:600px){
+  .subjects-grid,.steps,.form-row{ grid-template-columns:1fr; }
+  .hero-title{ font-size:36px; }
+  .time-grid{ grid-template-columns:repeat(3,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <span class="crescent">☽</span>
+    Ustadh Abiyad
+  </a>
+  <div class="nav-links">
+    <a href="#subjects">Subjects</a>
+    <a href="#how">How it works</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <button class="btn-book-nav" onclick="scrollToBook()">Book a Lesson</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero pattern-bg">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">☽ Online Quran Lessons</div>
+      <div class="hero-ayah">وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</div>
+      <div class="hero-ayah-trans">"And recite the Quran with measured recitation." — Al-Muzzammil 73:4</div>
+      <h1 class="hero-title">Learn the Quran<br>with Guidance &amp;<br>Care</h1>
+      <p class="hero-sub">One-on-one lessons tailored to your level — from complete beginners to advanced Tajweed. Book your free trial today.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollToBook()">📅 Book Free Trial</button>
+        <button class="btn-outline" onclick="document.getElementById('subjects').scrollIntoView({behavior:'smooth'})">View Subjects</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="teacher-avatar">أ</div>
+      <div class="teacher-name">Ustadh Abiyad</div>
+      <div class="teacher-title">Certified Quran Teacher · Ijazah in Hafs</div>
+      <div class="teacher-stats">
+        <div class="tstat"><span class="tstat-val">12+</span><span class="tstat-lbl">Years exp.</span></div>
+        <div class="tstat"><span class="tstat-val">200+</span><span class="tstat-lbl">Students</span></div>
+        <div class="tstat"><span class="tstat-val">4.9★</span><span class="tstat-lbl">Rating</span></div>
+      </div>
+      <div class="availability-label">Available slots this week</div>
+      <div class="slots-preview">
+        <span class="slot-chip">Mon 7 PM</span>
+        <span class="slot-chip">Tue 6 PM</span>
+        <span class="slot-chip">Thu 8 PM</span>
+        <span class="slot-chip">Sat 10 AM</span>
+        <span class="slot-chip">Sun 4 PM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section id="subjects">
+  <div class="section-inner">
+    <span class="section-tag">What I Teach</span>
+    <h2 class="section-title">Choose Your Path</h2>
+    <p class="section-sub">Every student is unique. Lessons are tailored to your age, level, and goals — children and adults welcome.</p>
+    <div class="subjects-grid">
+      <div class="subject-card">
+        <div class="subject-icon">📖</div>
+        <div class="subject-name">Quran Reading (Noorani Qaida)</div>
+        <p class="subject-desc">Learn Arabic letters, sounds, and basic reading rules from scratch. Perfect for absolute beginners and young children.</p>
+        <div class="subject-meta">Beginner · All ages</div>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🎙️</div>
+        <div class="subject-name">Tajweed</div>
+        <p class="subject-desc">Master the rules of proper Quranic recitation — articulation points, prolongation, and beautification of recitation.</p>
+        <div class="subject-meta">Intermediate – Advanced</div>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🧠</div>
+        <div class="subject-name">Hifz (Memorization)</div>
+        <p class="subject-desc">Structured program for memorizing the Quran with proven revision techniques and personalized pace.</p>
+        <div class="subject-meta">All levels · Long-term</div>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">🌙</div>
+        <div class="subject-name">Short Surahs for Prayer</div>
+        <p class="subject-desc">Quick course to memorize and perfect the Surahs needed for daily Salah — ideal for reverts and beginners.</p>
+        <div class="subject-meta">Beginner · 4–8 weeks</div>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">📝</div>
+        <div class="subject-name">Arabic for Quran</div>
+        <p class="subject-desc">Learn foundational Quranic Arabic to understand what you're reading. No prior Arabic knowledge needed.</p>
+        <div class="subject-meta">Beginner – Intermediate</div>
+      </div>
+      <div class="subject-card">
+        <div class="subject-icon">👶</div>
+        <div class="subject-name">Kids Special Program</div>
+        <p class="subject-desc">Fun, engaging lessons for children ages 5–14 combining stories, games, and structured Quran learning.</p>
+        <div class="subject-meta">Ages 5–14</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="pattern-bg">
+  <div class="section-inner">
+    <span class="section-tag">Simple Process</span>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Get started in minutes. No complex setup — just you and your Quran learning journey.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Pick a subject</div>
+        <p class="step-desc">Choose the area you want to focus on from our curriculum above.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Book a slot</div>
+        <p class="step-desc">Select a day and time that works for you from available slots.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Get confirmed</div>
+        <p class="step-desc">Receive a confirmation and Zoom link via email within 2 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Start learning</div>
+        <p class="step-desc">Join the lesson and begin your Quranic journey at your own pace.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section id="book">
+  <div class="section-inner">
+    <span class="section-tag">Reserve Your Spot</span>
+    <h2 class="section-title">Book a Lesson</h2>
+    <p class="section-sub">First lesson is always free. No commitment, no credit card required.</p>
+
+    <div class="booking-wrap">
+      <!-- Info -->
+      <div class="booking-info">
+        <h3>Lesson Details</h3>
+        <div class="info-item">
+          <div class="info-icon">⏱</div>
+          <div class="info-text">
+            <strong>Session length</strong>
+            <span>30 or 60 minutes per lesson</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">💻</div>
+          <div class="info-text">
+            <strong>Platform</strong>
+            <span>Zoom (link sent after booking)</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🌍</div>
+          <div class="info-text">
+            <strong>Language</strong>
+            <span>English, Arabic, Urdu</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">💰</div>
+          <div class="info-text">
+            <strong>Pricing</strong>
+            <span>From $15/lesson · First lesson FREE</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📧</div>
+          <div class="info-text">
+            <strong>Contact</strong>
+            <span>ustadhabiyad@gmail.com</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div class="info-text">
+            <strong>Response time</strong>
+            <span>Confirmation within 2 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="form-card">
+        <div id="booking-form-wrap">
+          <div class="form-title">Reserve Your Slot</div>
+          <div class="form-sub">Fill in your details and we'll confirm your lesson shortly.</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First name</label>
+              <input type="text" id="f-fname" placeholder="Ahmad">
+            </div>
+            <div class="form-group">
+              <label>Last name</label>
+              <input type="text" id="f-lname" placeholder="Hassan">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="f-email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label>Phone (optional)</label>
+              <input type="tel" id="f-phone" placeholder="+1 234 567 890">
+            </div>
+          </div>
+
+          <div class="form-full form-group">
+            <label>Subject</label>
+            <select id="f-subject">
+              <option value="">— Select a subject —</option>
+              <option>Quran Reading (Noorani Qaida)</option>
+              <option>Tajweed</option>
+              <option>Hifz (Memorization)</option>
+              <option>Short Surahs for Prayer</option>
+              <option>Arabic for Quran</option>
+              <option>Kids Special Program</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your level</label>
+              <select id="f-level">
+                <option value="">— Select —</option>
+                <option>Complete beginner</option>
+                <option>Can read slowly</option>
+                <option>Intermediate reader</option>
+                <option>Advanced</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Session length</label>
+              <select id="f-duration">
+                <option>30 minutes</option>
+                <option>60 minutes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-full">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Preferred day</label>
+            <div class="day-picker" id="day-picker">
+              <button class="day-btn" data-day="Mon" onclick="selectDay(this)">Mon</button>
+              <button class="day-btn" data-day="Tue" onclick="selectDay(this)">Tue</button>
+              <button class="day-btn" data-day="Wed" onclick="selectDay(this)">Wed</button>
+              <button class="day-btn" data-day="Thu" onclick="selectDay(this)">Thu</button>
+              <button class="day-btn" data-day="Fri" onclick="selectDay(this)">Fri</button>
+              <button class="day-btn" data-day="Sat" onclick="selectDay(this)">Sat</button>
+              <button class="day-btn" data-day="Sun" onclick="selectDay(this)">Sun</button>
+            </div>
+          </div>
+
+          <div class="form-full">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Preferred time</label>
+            <div class="time-grid" id="time-grid">
+              <button class="time-btn" onclick="selectTime(this)">8:00 AM</button>
+              <button class="time-btn" onclick="selectTime(this)">9:00 AM</button>
+              <button class="time-btn" onclick="selectTime(this)">10:00 AM</button>
+              <button class="time-btn" onclick="selectTime(this)">11:00 AM</button>
+              <button class="time-btn taken" disabled>12:00 PM</button>
+              <button class="time-btn" onclick="selectTime(this)">2:00 PM</button>
+              <button class="time-btn taken" disabled>4:00 PM</button>
+              <button class="time-btn" onclick="selectTime(this)">5:00 PM</button>
+              <button class="time-btn" onclick="selectTime(this)">6:00 PM</button>
+              <button class="time-btn" onclick="selectTime(this)">7:00 PM</button>
+              <button class="time-btn taken" disabled>8:00 PM</button>
+              <button class="time-btn" onclick="selectTime(this)">9:00 PM</button>
+            </div>
+          </div>
+
+          <div class="form-full form-group">
+            <label>Message (optional)</label>
+            <textarea id="f-message" placeholder="Tell me about your background, goals, or any questions..."></textarea>
+          </div>
+
+          <button class="btn-submit" onclick="submitBooking()">☽ Book My Lesson</button>
+        </div>
+
+        <div class="success-msg" id="success-msg">
+          <div class="success-icon">✓</div>
+          <h3>Booking Received!</h3>
+          <p id="success-detail">Thank you! I'll confirm your lesson via email within 2 hours. Looking forward to learning with you.</p>
+          <button class="btn-submit" style="margin-top:20px;max-width:200px" onclick="resetForm()">Book Another</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:var(--cream)">
+  <div class="section-inner">
+    <span class="section-tag">Student Reviews</span>
+    <h2 class="section-title">What Students Say</h2>
+    <p class="section-sub">Alhamdulillah — over 200 students taught, from beginners to those completing their Hifz.</p>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Ustadh Abiyad is incredibly patient and knowledgeable. My daughter went from not knowing the alphabet to reading full surahs in 3 months!"</p>
+        <div class="testimonial-author">Sister Fatima K.</div>
+        <div class="testimonial-from">London, UK — Kids Program</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"I'm a revert who was always embarrassed about my recitation. The non-judgmental environment here changed everything. Highly recommend!"</p>
+        <div class="testimonial-author">Brother James M.</div>
+        <div class="testimonial-from">Toronto, Canada — Tajweed</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"After 2 years with Ustadh Abiyad, I've memorized 5 Juz. His system of revision is very structured and the flexibility to book sessions is great."</p>
+        <div class="testimonial-author">Brother Tariq A.</div>
+        <div class="testimonial-from">Dubai, UAE — Hifz Program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:white">
+  <div class="section-inner">
+    <span class="section-tag">FAQ</span>
+    <h2 class="section-title">Common Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How does the free trial work? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Your first lesson is completely free and has no obligation. It's a chance for us to meet, assess your level, and plan a personalised learning path. After that, you decide if you'd like to continue.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What platform do you use for lessons? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">All lessons are conducted over Zoom. You'll receive a personalized Zoom link by email after your booking is confirmed. No special equipment needed — just a device with a camera and microphone.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Can I book for my child? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Absolutely! The Kids Special Program is specifically designed for children ages 5–14 with age-appropriate methods, stories, and games. Parents are welcome to sit in on lessons.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What if I need to cancel or reschedule? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">No problem — just give 24 hours notice via email or WhatsApp and we'll reschedule at no cost. Cancellations within 24 hours of the lesson may be charged.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What languages are lessons taught in? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Lessons are available in English, Arabic, and Urdu. Just mention your preference in the booking form.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How much do lessons cost? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">30-minute lessons start from $15 and 60-minute lessons from $25. Monthly packages are available at a discounted rate. Payment is accepted via bank transfer or PayPal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">☽ Ustadh Abiyad</div>
+  <div class="footer-tagline">Online Quran Lessons · Available Worldwide</div>
+  <div class="footer-links">
+    <a href="#subjects">Subjects</a>
+    <a href="#book">Book</a>
+    <a href="#faq">FAQ</a>
+    <a href="mailto:ustadhabiyad@gmail.com">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Ustadh Abiyad · Made with ❤️ for the love of Quran</div>
+</footer>
+
+<!-- ADMIN BUTTON -->
+<button class="admin-toggle-btn" onclick="openAdmin()">⚙ View Bookings</button>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="admin-panel">
+  <div class="admin-box">
+    <div class="admin-header">
+      <div class="admin-title">📅 Bookings Dashboard</div>
+      <button class="close-btn" onclick="closeAdmin()">×</button>
+    </div>
+    <div class="admin-body" id="admin-body">
+      <div class="empty-bookings">No bookings yet. They'll appear here once students submit the form.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let selectedDay = '';
+let selectedTime = '';
+let bookings = [];
+
+function scrollToBook() {
+  document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+}
+
+function selectDay(btn) {
+  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedDay = btn.dataset.day;
+}
+
+function selectTime(btn) {
+  if (btn.classList.contains('taken')) return;
+  document.querySelectorAll('.time-btn:not(.taken)').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedTime = btn.textContent;
+}
+
+function toggleFaq(item) {
+  item.classList.toggle('open');
+}
+
+function submitBooking() {
+  const fname = document.getElementById('f-fname').value.trim();
+  const lname = document.getElementById('f-lname').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const subject = document.getElementById('f-subject').value;
+  const level = document.getElementById('f-level').value;
+  const duration = document.getElementById('f-duration').value;
+
+  if (!fname || !email || !subject || !level) {
+    alert('Please fill in your name, email, subject, and level.');
+    return;
+  }
+  if (!selectedDay) { alert('Please select a preferred day.'); return; }
+  if (!selectedTime) { alert('Please select a preferred time.'); return; }
+
+  const booking = {
+    id: Date.now(),
+    name: fname + ' ' + lname,
+    email,
+    phone: document.getElementById('f-phone').value,
+    subject,
+    level,
+    duration,
+    day: selectedDay,
+    time: selectedTime,
+    message: document.getElementById('f-message').value,
+    status: 'new',
+    createdAt: new Date().toLocaleString()
+  };
+  bookings.push(booking);
+
+  document.getElementById('booking-form-wrap').style.display = 'none';
+  const s = document.getElementById('success-msg');
+  s.style.display = 'block';
+  document.getElementById('success-detail').textContent =
+    `JazakAllahu Khayran, ${fname}! Your ${subject} lesson request for ${selectedDay} at ${selectedTime} has been received. I'll confirm within 2 hours at ${email}.`;
+}
+
+function resetForm() {
+  document.getElementById('booking-form-wrap').style.display = 'block';
+  document.getElementById('success-msg').style.display = 'none';
+  ['f-fname','f-lname','f-email','f-phone','f-message'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-subject').value = '';
+  document.getElementById('f-level').value = '';
+  document.getElementById('f-duration').value = '30 minutes';
+  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+  selectedDay = ''; selectedTime = '';
+}
+
+function openAdmin() {
+  renderAdmin();
+  document.getElementById('admin-panel').classList.add('open');
+}
+function closeAdmin() {
+  document.getElementById('admin-panel').classList.remove('open');
+}
+
+function renderAdmin() {
+  const body = document.getElementById('admin-body');
+  if (!bookings.length) {
+    body.innerHTML = '<div class="empty-bookings">No bookings yet. They\'ll appear here once students submit the form.</div>';
+    return;
+  }
+  body.innerHTML = bookings.map(b => `
+    <div class="booking-entry" id="entry-${b.id}">
+      <div class="booking-entry-top">
+        <div class="booking-entry-name">${b.name}</div>
+        <span class="booking-status status-${b.status}">${b.status === 'new' ? '🟡 New' : '✅ Confirmed'}</span>
+      </div>
+      <div class="booking-meta">
+        📧 ${b.email} ${b.phone ? '· 📞 ' + b.phone : ''}<br>
+        📖 ${b.subject} · ${b.level} · ${b.duration}<br>
+        📅 ${b.day} at ${b.time}<br>
+        🕐 Requested: ${b.createdAt}
+        ${b.message ? '<br>💬 ' + b.message : ''}
+      </div>
+      <div class="booking-actions">
+        ${b.status === 'new' ? `<button class="action-btn confirm-btn" onclick="confirmBooking(${b.id})">✓ Confirm</button>` : ''}
+        <button class="action-btn delete-btn" onclick="deleteBooking(${b.id})">✕ Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function confirmBooking(id) {
+  const b = bookings.find(x => x.id === id);
+  if (b) { b.status = 'confirmed'; renderAdmin(); }
+}
+
+function deleteBooking(id) {
+  bookings = bookings.filter(x => x.id !== id);
+  renderAdmin();
+}
+
+document.getElementById('admin-panel').addEventListener('click', e => {
+  if (e.target === document.getElementById('admin-panel')) closeAdmin();
+});
+</script>
+</body>
+</html>
